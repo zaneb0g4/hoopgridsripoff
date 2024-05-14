@@ -4,8 +4,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Box extends JPanel implements MouseListener {
+    private JTextField textField;
     public Box(){
         setPreferredSize(new Dimension(100, 100));
+        addMouseListener(this);
     }
 
     @Override
@@ -16,16 +18,22 @@ public class Box extends JPanel implements MouseListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Box");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new Box());
-        frame.pack();
-        frame.setVisible(true);
+
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        if (textField == null) {
+            textField = new JTextField();
+            textField.setBounds(10, 10, 80, 20);
+            add(textField);
+            repaint();
+        }
+        else {
+            remove(textField);
+            textField = null;
+            repaint();
+        }
     }
 
     @Override
