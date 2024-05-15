@@ -1,6 +1,18 @@
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
 
 public class GameBoard {
+    private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=jordan";
+
     String[] allTeams = new String[]{"Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons",
             "Golden State Warriors", "Houston Rockets", "Indiana Pacers", "Los Angeles Clippers", "Los Angeles Lakers",
@@ -82,7 +94,43 @@ public class GameBoard {
     }
 
 
-    public static void main(String[] args) {
+    private static void sendGET() throws IOException {
+        URL obj = new URL(GET_URL);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);
+        if (responseCode == HttpURLConnection.HTTP_OK) { // success
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // print result
+            System.out.println(response.toString());
+            GsonBuilder builder = new GsonBuilder();
+            builder.setPrettyPrinting();
+
+            Gson gson = builder.create();
+            JsonElement element = gson.fromJson (response.toString(), JsonElement.class);
+            JsonObject jsonObj = element.getAsJsonObject();
+            JsonArray players = jsonObj.getAsJsonArray("players");
+            System.out.println(players);
+//            System.out.println(Gson.);
+//            System.out.println(gson.fromJson(response.toString(), new TypeToken<List<Player>>(){}.getType()).toString());
+
+        } else {
+            System.out.println("GET request did not work.");
+        }
+
+    }
+    public static void main(String[] args) throws IOException {
         GameBoard x = new GameBoard();
+        GameBoard.sendGET();
     }
 }
