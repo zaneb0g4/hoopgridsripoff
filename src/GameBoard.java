@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GameBoard {
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static final String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=jordan";
+    private static String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=luka";
 
     String[] allTeams = new String[]{"Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons",
@@ -89,7 +89,7 @@ public class GameBoard {
         row4.add(box9);
 
         frame.pack();
-        frame.setSize(500, 500);
+        frame.setSize(600, 500);
         frame.setVisible(true);
     }
 
@@ -110,24 +110,20 @@ public class GameBoard {
                 response.append(inputLine);
             }
             in.close();
-
-            // print result
-            System.out.println(response.toString());
             GsonBuilder builder = new GsonBuilder();
             builder.setPrettyPrinting();
 
             Gson gson = builder.create();
-            JsonElement element = gson.fromJson (response.toString(), JsonElement.class);
-            JsonObject jsonObj = element.getAsJsonObject();
-            JsonArray players = jsonObj.getAsJsonArray("players");
-            System.out.println(players);
-//            System.out.println(Gson.);
-//            System.out.println(gson.fromJson(response.toString(), new TypeToken<List<Player>>(){}.getType()).toString());
+            List<Player> players = gson.fromJson(response.toString(), Players.class).players;
+            System.out.println(players.size());
+            System.out.println(players.get(0).getName());
 
         } else {
             System.out.println("GET request did not work.");
         }
-
+    }
+    private static class Players {
+        private List<Player> players;
     }
     public static void main(String[] args) throws IOException {
         GameBoard x = new GameBoard();
