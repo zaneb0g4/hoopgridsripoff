@@ -2,6 +2,7 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,7 +27,15 @@ public class GameBoard {
     public GameBoard() {
         frame = new JFrame("Hoop Grids by ZB");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+        frame.setLayout(new BorderLayout());
+        JPanel sidePanel = new JPanel();
+        sidePanel.setPreferredSize(new Dimension(150, 500));
+        sidePanel.setBackground(Color.GRAY);
+        frame.add(sidePanel, BorderLayout.EAST);
+        JPanel board = new JPanel();
+        board.setLayout(new BoxLayout(board, BoxLayout.Y_AXIS));
+        frame.add(board);
+
         String team1 = allTeams[(int) (Math.random() * 30)];
         String team2 = allTeams[(int) (Math.random() * 30)];
         String team3 = allTeams[(int) (Math.random() * 30)];
@@ -45,18 +54,22 @@ public class GameBoard {
             team6 = allTeams[(int) (Math.random() * 30)];
         }
 
+        //setting up grid side of the board
         JPanel row1 = new JPanel();
         JPanel row2 = new JPanel();
         JPanel row3 = new JPanel();
         JPanel row4 = new JPanel();
-        frame.add(row1);
-        frame.add(row2);
-        frame.add(row3);
-        frame.add(row4);
+        board.add(row1);
+        board.add(row2);
+        board.add(row3);
+        board.add(row4);
 
+        JPanel filler = new JPanel();
+        filler.setPreferredSize(new Dimension(100, 100));
         Header header1 = new Header(team1);
         Header header2 = new Header(team2);
         Header header3 = new Header(team3);
+        row1.add(filler);
         row1.add(header1);
         row1.add(header2);
         row1.add(header3);
@@ -87,6 +100,12 @@ public class GameBoard {
         row4.add(box7);
         row4.add(box8);
         row4.add(box9);
+
+        //setting up player list side
+        JLabel label1 = new JLabel("Type player name here:");
+        sidePanel.add(label1);
+        JTextField field1 = new JTextField(10);
+        sidePanel.add(field1);
 
         frame.pack();
         frame.setSize(600, 500);
