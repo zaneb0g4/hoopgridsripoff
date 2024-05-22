@@ -11,8 +11,8 @@ import java.net.URL;
 import java.util.List;
 
 public class GameBoard {
+    public static final String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=";
     private static final String USER_AGENT = "Mozilla/5.0";
-    private static String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=luka";
 
     String[] allTeams = new String[]{"Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons",
@@ -28,9 +28,7 @@ public class GameBoard {
         frame = new JFrame("Hoop Grids by ZB");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-        JPanel sidePanel = new JPanel();
-        sidePanel.setPreferredSize(new Dimension(150, 500));
-        sidePanel.setBackground(Color.GRAY);
+        Search sidePanel = new Search();
         frame.add(sidePanel, BorderLayout.EAST);
         JPanel board = new JPanel();
         board.setLayout(new BoxLayout(board, BoxLayout.Y_AXIS));
@@ -100,12 +98,6 @@ public class GameBoard {
         row4.add(box7);
         row4.add(box8);
         row4.add(box9);
-
-        //setting up player list side
-        JLabel label1 = new JLabel("Type player name here:");
-        sidePanel.add(label1);
-        JTextField field1 = new JTextField(10);
-        sidePanel.add(field1);
 
         frame.pack();
         frame.setSize(600, 500);

@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Box extends JPanel implements MouseListener {
-    private JTextField textField;
     public Box(){
         setPreferredSize(new Dimension(100, 100));
         addMouseListener(this);
@@ -23,17 +22,11 @@ public class Box extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (textField == null) {
-            textField = new JTextField();
-            textField.setBounds(10, 10, 80, 20);
-            add(textField);
-            repaint();
-        }
-        else {
-            remove(textField);
-            textField = null;
-            repaint();
-        }
+       if(getBackground() == Color.BLUE){
+           setBackground(Color.lightGray);
+       }else{
+           setBackground(Color.BLUE);
+       }
     }
 
     @Override
