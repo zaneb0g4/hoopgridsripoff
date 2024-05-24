@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,12 +25,25 @@ public class Search extends JPanel{
         add(label1);
         field1 = new JTextField(10);
         add(field1);
-        field1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        field1.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                System.out.println("removev");
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
                 textFieldValue = field1.getText();
+                System.out.println(textFieldValue);
                 if(!textFieldValue.isEmpty()){
                     String currentSearch = GameBoard.GET_URL + textFieldValue;
                     List<Player> players = GameBoard.sendGET(currentSearch);
+                    System.out.println(players.get(0).getName());
                     name1.setText(players.get(0).getName());
                     name2.setText(players.get(1).getName());
                     name3.setText(players.get(2).getName());

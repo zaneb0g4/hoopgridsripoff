@@ -107,7 +107,7 @@ public class GameBoard {
     static List<Player> sendGET(String str) {
         try {
 
-            URL obj = new URL(GET_URL + str);
+            URL obj = new URL(str);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
