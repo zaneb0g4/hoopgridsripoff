@@ -104,35 +104,42 @@ public class GameBoard {
     }
 
 
-    static List sendGET(String str) throws IOException {
-        URL obj = new URL(GET_URL + str);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+    static List<Player> sendGET(String str) {
+        try {
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            URL obj = new URL(GET_URL + str);
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = con.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+                GsonBuilder builder = new GsonBuilder();
+                builder.setPrettyPrinting();
+
+                Gson gson = builder.create();
+                List<Player> players = gson.fromJson(response.toString(), Players.class).players;
+                System.out.println(players.size());
+                System.out.println(players.get(0).getName());
+                return players;
+
+            } else {
+                System.out.println("GET request did not work.");
             }
-            in.close();
-            GsonBuilder builder = new GsonBuilder();
-            builder.setPrettyPrinting();
-
-            Gson gson = builder.create();
-            List<Player> players = gson.fromJson(response.toString(), Players.class).players;
-            System.out.println(players.size());
-            System.out.println(players.get(0).getName());
-            return players;
-
-        } else {
-            System.out.println("GET request did not work.");
+            return null;
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+            System.out.println(e);
+            return null;
         }
-        return null;
     }
     private static class Players {
         private final List<Player> players;
