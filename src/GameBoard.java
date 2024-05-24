@@ -1,5 +1,4 @@
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +23,7 @@ public class GameBoard {
 
     JFrame frame;
 
-    public GameBoard() {
+    public GameBoard() throws IOException {
         frame = new JFrame("Hoop Grids by ZB");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -105,8 +104,8 @@ public class GameBoard {
     }
 
 
-    private static void sendGET() throws IOException {
-        URL obj = new URL(GET_URL);
+    static List sendGET(String str) throws IOException {
+        URL obj = new URL(GET_URL + str);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
@@ -128,16 +127,21 @@ public class GameBoard {
             List<Player> players = gson.fromJson(response.toString(), Players.class).players;
             System.out.println(players.size());
             System.out.println(players.get(0).getName());
+            return players;
 
         } else {
             System.out.println("GET request did not work.");
         }
+        return null;
     }
     private static class Players {
-        private List<Player> players;
+        private final List<Player> players;
+
+        private Players(List<Player> players) {
+            this.players = players;
+        }
     }
     public static void main(String[] args) throws IOException {
         GameBoard x = new GameBoard();
-        GameBoard.sendGET();
     }
 }
