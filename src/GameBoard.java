@@ -129,6 +129,7 @@ public class GameBoard {
                 List<Player> players = gson.fromJson(response.toString(), Players.class).players;
                 System.out.println(players.size());
                 System.out.println(players.get(0).getName());
+                System.out.println(players.get(0));
                 return players;
 
             } else {
