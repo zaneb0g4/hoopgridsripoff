@@ -106,7 +106,6 @@ public class GameBoard {
 
     static List<Player> sendGET(String str) {
         try {
-
             URL obj = new URL(str);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
@@ -131,7 +130,6 @@ public class GameBoard {
                 System.out.println(players.get(0).getName());
                 System.out.println(players.get(0));
                 return players;
-
             } else {
                 System.out.println("GET request did not work.");
             }
