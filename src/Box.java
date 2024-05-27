@@ -4,8 +4,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Box extends JPanel implements MouseListener {
+    private String name;
+    private JLabel nameLabel;
     public Box(){
         setPreferredSize(new Dimension(100, 100));
+        setBackground(Color.lightGray);
+        nameLabel = new JLabel();
+        add(nameLabel);
         addMouseListener(this);
     }
 
@@ -14,6 +19,15 @@ public class Box extends JPanel implements MouseListener {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, 99, 99);
+    }
+
+    public void setName(String name){
+        this.name = name;
+        nameLabel.setText(name);
+    }
+
+    public String getName(){
+        return name;
     }
 
     public static void main(String[] args) {
@@ -26,6 +40,7 @@ public class Box extends JPanel implements MouseListener {
            setBackground(Color.lightGray);
        }else{
            setBackground(Color.BLUE);
+           GameBoard.setCurrentBox(this);
        }
     }
 

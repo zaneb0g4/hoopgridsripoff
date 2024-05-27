@@ -12,7 +12,6 @@ public class PlayerButton extends JButton implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(name);
-        System.out.println("hi");
+        GameBoard.getCurrentBox().setName(name);
     }
 }

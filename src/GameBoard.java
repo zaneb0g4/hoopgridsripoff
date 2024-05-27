@@ -13,6 +13,8 @@ public class GameBoard {
     public static final String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=";
     private static final String USER_AGENT = "Mozilla/5.0";
 
+    static Box currentBox;
+
     String[] allTeams = new String[]{"Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Hornets",
             "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons",
             "Golden State Warriors", "Houston Rockets", "Indiana Pacers", "Los Angeles Clippers", "Los Angeles Lakers",
@@ -103,6 +105,13 @@ public class GameBoard {
         frame.setVisible(true);
     }
 
+    public static void setCurrentBox(Box b){
+        currentBox = b;
+    }
+
+    public static Box getCurrentBox(){
+        return currentBox;
+    }
 
     static List<Player> sendGET(String str) {
         try {
