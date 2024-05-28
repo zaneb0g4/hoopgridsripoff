@@ -7,11 +7,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameBoard {
     public static final String GET_URL = "https://api.sports-reference.com/v1/bbr/players?search=";
     private static final String USER_AGENT = "Mozilla/5.0";
+
+    private ArrayList<Box> takenList = new ArrayList<>();
+    private ArrayList<Box> availList = new ArrayList<>();
 
     static Box currentBox;
 
@@ -74,31 +78,42 @@ public class GameBoard {
         row1.add(header3);
 
         Header header4 = new Header(team4);
-        Box box1 = new Box();
-        Box box2 = new Box();
-        Box box3 = new Box();
+        Box box1 = new Box(this);
+        Box box2 = new Box(this);
+        Box box3 = new Box(this);
         row2.add(header4);
         row2.add(box1);
         row2.add(box2);
         row2.add(box3);
 
+
         Header header5 = new Header(team5);
-        Box box4 = new Box();
-        Box box5 = new Box();
-        Box box6 = new Box();
+        Box box4 = new Box(this);
+        Box box5 = new Box(this);
+        Box box6 = new Box(this);
         row3.add(header5);
         row3.add(box4);
         row3.add(box5);
         row3.add(box6);
 
         Header header6 = new Header(team6);
-        Box box7 = new Box();
-        Box box8 = new Box();
-        Box box9 = new Box();
+        Box box7 = new Box(this);
+        Box box8 = new Box(this);
+        Box box9 = new Box(this);
         row4.add(header6);
         row4.add(box7);
         row4.add(box8);
         row4.add(box9);
+
+        availList.add(box1);
+        availList.add(box2);
+        availList.add(box3);
+        availList.add(box4);
+        availList.add(box5);
+        availList.add(box6);
+        availList.add(box7);
+        availList.add(box8);
+        availList.add(box9);
 
         frame.pack();
         frame.setSize(600, 500);
@@ -107,6 +122,12 @@ public class GameBoard {
 
     public static void setCurrentBox(Box b){
         currentBox = b;
+    }
+
+    public void deselectAllBoxes(){
+        for(Box b : availList){
+            b.setBackground(Color.lightGray);
+        }
     }
 
     public static Box getCurrentBox(){
@@ -158,5 +179,6 @@ public class GameBoard {
     }
     public static void main(String[] args) throws IOException {
         GameBoard x = new GameBoard();
+
     }
 }

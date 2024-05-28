@@ -39,15 +39,25 @@ public class Search extends JPanel{
                     String currentSearch = GameBoard.GET_URL + textFieldValue;
                     List<Player> players = GameBoard.sendGET(currentSearch);
                     name1.setText(players.get(0).getName());
+                    name1.setName(players.get(0).getName());
                     name2.setText(players.get(1).getName());
+                    name2.setName(players.get(1).getName());
                     name3.setText(players.get(2).getName());
+                    name3.setName(players.get(2).getName());
                     name4.setText(players.get(3).getName());
+                    name4.setName(players.get(3).getName());
                     name5.setText(players.get(4).getName());
+                    name5.setName(players.get(4).getName());
                     name6.setText(players.get(5).getName());
+                    name6.setName(players.get(5).getName());
                     name7.setText(players.get(6).getName());
+                    name7.setName(players.get(6).getName());
                     name8.setText(players.get(7).getName());
+                    name8.setName(players.get(7).getName());
                     name9.setText(players.get(8).getName());
+                    name9.setName(players.get(8).getName());
                     name10.setText(players.get(9).getName());
+                    name10.setName(players.get(9).getName());
                 }
             }
         });

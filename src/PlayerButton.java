@@ -10,8 +10,13 @@ public class PlayerButton extends JButton implements ActionListener {
         this.name = name;
         addActionListener(this);
     }
+
+    public void setName(String name){
+        this.name = name;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameBoard.getCurrentBox().setName(name);
+        GameBoard.getCurrentBox().setName(this.name);
+        System.out.println("name set to " + this.name);
     }
 }
