@@ -9,11 +9,19 @@ public class Player {
         this.headshot = headshot;
     }
 
+    public Player(String name){
+        this.name = name;
+    }
+
     public String getName(){
         return this.name;
     }
 
     public String getHeadshot() {
         return headshot;
+    }
+
+    public Team[] getTeams() {
+        return teams;
     }
 }

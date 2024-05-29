@@ -78,9 +78,9 @@ public class GameBoard {
         row1.add(header3);
 
         Header header4 = new Header(team4);
-        Box box1 = new Box(this);
-        Box box2 = new Box(this);
-        Box box3 = new Box(this);
+        Box box1 = new Box(this, team4, team1);
+        Box box2 = new Box(this, team4, team2);
+        Box box3 = new Box(this, team4, team3);
         row2.add(header4);
         row2.add(box1);
         row2.add(box2);
@@ -88,18 +88,18 @@ public class GameBoard {
 
 
         Header header5 = new Header(team5);
-        Box box4 = new Box(this);
-        Box box5 = new Box(this);
-        Box box6 = new Box(this);
+        Box box4 = new Box(this, team5, team1);
+        Box box5 = new Box(this, team5, team2);
+        Box box6 = new Box(this, team5, team3);
         row3.add(header5);
         row3.add(box4);
         row3.add(box5);
         row3.add(box6);
 
         Header header6 = new Header(team6);
-        Box box7 = new Box(this);
-        Box box8 = new Box(this);
-        Box box9 = new Box(this);
+        Box box7 = new Box(this, team6, team1);
+        Box box8 = new Box(this, team6, team2);
+        Box box9 = new Box(this, team6, team3);
         row4.add(header6);
         row4.add(box7);
         row4.add(box8);

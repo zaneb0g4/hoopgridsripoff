@@ -9,8 +9,11 @@ public class Box extends JPanel implements MouseListener {
 
     GameBoard gameBoard;
 
+    String teamRow;
+    String teamCol;
 
-    public Box(GameBoard gameBoard){
+
+    public Box(GameBoard gameBoard, String teamRow, String teamCol){
         setPreferredSize(new Dimension(100, 100));
         setBackground(Color.lightGray);
         nameLabel = new JLabel();
@@ -33,6 +36,14 @@ public class Box extends JPanel implements MouseListener {
 
     public String getName(){
         return name;
+    }
+
+    public String getTeamRow(){
+        return teamRow;
+    }
+
+    public String getTeamCol(){
+        return teamCol;
     }
 
     public static void main(String[] args) {
