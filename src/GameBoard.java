@@ -141,7 +141,7 @@ public class GameBoard {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
             int responseCode = con.getResponseCode();
-            System.out.println("GET Response Code :: " + responseCode);
+            //System.out.println("GET Response Code :: " + responseCode);
             if (responseCode == HttpURLConnection.HTTP_OK) { // success
                 BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -156,9 +156,9 @@ public class GameBoard {
 
                 Gson gson = builder.create();
                 List<Player> players = gson.fromJson(response.toString(), Players.class).players;
-                System.out.println(players.size());
-                System.out.println(players.get(0).getName());
-                System.out.println(players.get(0));
+//                System.out.println(players.size());
+//                System.out.println(players.get(0).getName());
+//                System.out.println(players.get(0));
                 return players;
             } else {
                 System.out.println("GET request did not work.");
