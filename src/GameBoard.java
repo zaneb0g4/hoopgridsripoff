@@ -68,7 +68,7 @@ public class GameBoard {
         board.add(row4);
 
         JPanel filler = new JPanel();
-        filler.setPreferredSize(new Dimension(100, 100));
+        filler.setPreferredSize(new Dimension(200, 200));
         Header header1 = new Header(team1);
         Header header2 = new Header(team2);
         Header header3 = new Header(team3);
@@ -116,7 +116,7 @@ public class GameBoard {
         availList.add(box9);
 
         frame.pack();
-        frame.setSize(600, 500);
+        frame.setSize(1200, 1000);
         frame.setVisible(true);
     }
 

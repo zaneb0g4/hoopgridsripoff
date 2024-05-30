@@ -14,11 +14,11 @@ public class Search extends JPanel{
     PlayerButton name1, name2, name3, name4, name5, name6, name7, name8, name9, name10;
 
     public Search() {
-        setPreferredSize(new Dimension(150, 500));
+        setPreferredSize(new Dimension(300, 1000));
         setBackground(Color.GRAY);
         JLabel label1 = new JLabel("Type player name here:");
         add(label1);
-        field1 = new JTextField(10);
+        field1 = new JTextField(20);
         add(field1);
         field1.getDocument().addDocumentListener(new DocumentListener() {
             @Override

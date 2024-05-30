@@ -14,19 +14,21 @@ public class Box extends JPanel implements MouseListener {
 
 
     public Box(GameBoard gameBoard, String teamRow, String teamCol){
-        setPreferredSize(new Dimension(100, 100));
+        setPreferredSize(new Dimension(200, 200));
         setBackground(Color.lightGray);
         nameLabel = new JLabel();
         add(nameLabel);
         addMouseListener(this);
         this.gameBoard = gameBoard;
+        this.teamRow = teamRow;
+        this.teamCol = teamCol;
     }
 
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        g.drawRect(0, 0, 99, 99);
+        g.drawRect(0, 0, 199, 199);
     }
 
     public void setName(String name){
