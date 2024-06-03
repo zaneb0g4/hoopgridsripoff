@@ -14,7 +14,7 @@ public class Team {
         if(id.equals("BOS")){
             return "Boston Celtics";
         }
-        if(id.equals("BKN")){
+        if(id.equals("NJN")){
             return "Brooklyn Nets";
         }
         if(id.equals("CHA")){
