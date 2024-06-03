@@ -48,6 +48,7 @@ public class PlayerButton extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(playedForTeamCol(GameBoard.getCurrentBox(), player) && playedForTeamRow(GameBoard.getCurrentBox(), player)){
             GameBoard.getCurrentBox().setName(player.getName());
+//            System.out.println(player.getHeadshot());
         }
 //        System.out.println(GameBoard.getCurrentBox().getTeamCol());
 //        System.out.println(GameBoard.getCurrentBox().getTeamRow());

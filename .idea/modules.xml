@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hoopgridsripoff.iml" filepath="$PROJECT_DIR$/hoopgridsripoff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/images/images.iml" filepath="$PROJECT_DIR$/src/images/images.iml" />
     </modules>
   </component>
 </project>

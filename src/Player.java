@@ -1,9 +1,9 @@
 public class Player {
     private String name;
     private Team[] teams;
-    private String headshot;
+    private Headshot headshot;
 
-    public Player (String name, Team[] teams, String headshot){
+    public Player (String name, Team[] teams, Headshot headshot){
         this.name = name;
         this.teams = teams;
         this.headshot = headshot;
@@ -14,10 +14,10 @@ public class Player {
     }
 
     public String getName(){
-        return this.name;
+        return name;
     }
 
-    public String getHeadshot() {
+    public Headshot getHeadshot() {
         return headshot;
     }
 

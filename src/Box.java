@@ -54,11 +54,11 @@ public class Box extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e){
-       if(getBackground() == Color.BLUE){
+       if(getBackground() == Color.CYAN){
            setBackground(Color.lightGray);
        }else{
            this.gameBoard.deselectAllBoxes();
-           setBackground(Color.BLUE);
+           setBackground(Color.CYAN);
            GameBoard.setCurrentBox(this);
        }
     }
