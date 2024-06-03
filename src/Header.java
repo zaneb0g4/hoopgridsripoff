@@ -79,10 +79,6 @@ public class Header extends JPanel {
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.ORANGE);
-        g.fillOval(0,0,199,199);
-        g.setColor(Color.BLACK);
-        g.drawString(name, 10, 100);
         g.drawImage(image,0,0,this);
     }
 
